@@ -1,0 +1,58 @@
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+require('dotenv').config();
+
+const authRoutes = require('./routes/auth');
+const assessmentRoutes = require('./routes/assessments');
+const dashboardRoutes = require('./routes/dashboard');
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Static files
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/assessments', assessmentRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'Server is running' });
+});
+
+// Serve frontend
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
+});
+
+app.get('/form', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/form.html'));
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'Internal server error' });
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`BCG Credit Scoring System running on http://localhost:${PORT}`);
+});

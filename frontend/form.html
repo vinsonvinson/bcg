@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BCG - Assessment Form</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body class="form-page light-theme">
+        <div class="app-container">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <div class="bcg-logo-small">BCG</div>
+                    <span class="nav-title">Assessment Form</span>
+                </div>
+                <div class="navbar-right">
+                    <button id="themeToggle" class="theme-btn">🌙</button>
+                    <button id="logoutBtn" class="logout-btn">Logout</button>
+                </div>
+            </nav>
+
+            <div class="form-container">
+                <div class="progress-bar">
+                    <div class="progress-step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Business Info</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">5C Assessment</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Review & Submit</span>
+                    </div>
+                </div>
+
+                <form id="assessmentForm">
+                    <!-- Step 1: Business Information -->
+                    <div class="form-step active" id="step-1">
+                        <h2>Business Information</h2>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Business Name *</label>
+                                <input
+                                    type="text"
+                                    name="business_name"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label>Product Name *</label>
+                                <input
+                                    type="text"
+                                    name="product_name"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                onclick="previousStep()"
+                            >
+                                Back
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                onclick="nextStep(1)"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: 5C Assessment -->
+                    <div class="form-step" id="step-2">
+                        <h2>5C Assessment Scoring</h2>
+
+                        <div class="category-section">
+                            <h3>CHARACTER (Karakter/Kredibilitas) - 30%</h3>
+
+                            <div class="assessment-item">
+                                <label>1. Kemauan Berusaha (Willingness)</label>
+                                <select name="character_willingness" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label
+                                    >2. Integritas (Kejujuran &
+                                    Kooperatif)</label
+                                >
+                                <select name="character_integrity" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label
+                                    >3. Risiko Personal (Payment History &
+                                    Discipline)</label
+                                >
+                                <select name="character_personal_risk" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>4. Hubungan Sosial & Regulasi</label>
+                                <select
+                                    name="character_social_relation"
+                                    required
+                                >
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3>CAPACITY (Kemampuan Membayar) - 25%</h3>
+
+                            <div class="assessment-item">
+                                <label>1. Kemampuan Mengelola</label>
+                                <select name="capacity_management" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>2. Pengalaman Usaha</label>
+                                <select name="capacity_experience" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - &lt; 1 tahun</option>
+                                    <option value="2">2 - 1-2 tahun</option>
+                                    <option value="3">3 - 2-3 tahun</option>
+                                    <option value="4">4 - 3-5 tahun</option>
+                                    <option value="5">5 - &gt; 5 tahun</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>3. Kapasitas Produksi</label>
+                                <select name="capacity_production" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>4. Biaya & Produktivitas</label>
+                                <select
+                                    name="capacity_cost_productivity"
+                                    required
+                                >
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>5. Sarana Pendukung</label>
+                                <select name="capacity_equipment" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>6. Penjualan & Laba</label>
+                                <select name="capacity_sales" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3>CAPITAL (Permodalan) - 15%</h3>
+
+                            <div class="assessment-item">
+                                <label>1. Posisi Modal</label>
+                                <select name="capital_position" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>2. Posisi Hutang</label>
+                                <select name="capital_debt" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>3. Setoran Modal Pribadi</label>
+                                <select name="capital_contribution" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Tidak Ada</option>
+                                    <option value="2">2 - &lt; 30%</option>
+                                    <option value="3">3 - 30-50%</option>
+                                    <option value="4">4 - 50-75%</option>
+                                    <option value="5">5 - &gt; 75%</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>4. Piutang & Stok Barang</label>
+                                <select name="capital_receivable" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3>COLLATERAL (Agunan) - 20%</h3>
+
+                            <div class="assessment-item">
+                                <label>1. Jenis Agunan</label>
+                                <select name="collateral_type" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>2. Marketability Agunan</label>
+                                <select
+                                    name="collateral_marketability"
+                                    required
+                                >
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>3. Pengikatan Agunan</label>
+                                <select name="collateral_binding" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sempurna</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>4. Rasio LTV</label>
+                                <select name="collateral_ltv" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - &lt; 80%</option>
+                                    <option value="2">2 - 80-100%</option>
+                                    <option value="3">3 - 100%</option>
+                                    <option value="4">4 - 100-120%</option>
+                                    <option value="5">5 - &gt; 120%</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3>CONDITION (Kondisi Usaha & Ekonomi) - 10%</h3>
+
+                            <div class="assessment-item">
+                                <label>1. Pasar & Market Share</label>
+                                <select name="condition_market" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Lesu</option>
+                                    <option value="2">2 - Cukup Lesu</option>
+                                    <option value="3">3 - Stabil</option>
+                                    <option value="4">4 - Tumbuh</option>
+                                    <option value="5">5 - Tumbuh Pesat</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>2. Ketersediaan Bahan Baku</label>
+                                <select name="condition_material" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>3. Sarana Distribusi & Akses</label>
+                                <select name="condition_distribution" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Buruk</option>
+                                    <option value="2">2 - Cukup Buruk</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                </select>
+                            </div>
+
+                            <div class="assessment-item">
+                                <label>4. Regulasi & Legalitas</label>
+                                <select name="condition_regulation" required>
+                                    <option value="">Pilih skor</option>
+                                    <option value="1">1 - Terhambat</option>
+                                    <option value="2">
+                                        2 - Cukup Terhambat
+                                    </option>
+                                    <option value="3">3 - Standar</option>
+                                    <option value="4">4 - Didukung</option>
+                                    <option value="5">
+                                        5 - Sangat Didukung
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                onclick="previousStep()"
+                            >
+                                Back
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                onclick="nextStep(2)"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Review & Submit -->
+                    <div class="form-step" id="step-3">
+                        <h2>Review & Submit Assessment</h2>
+
+                        <div id="summaryReview" class="summary-review">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+
+                        <div class="form-buttons">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                onclick="previousStep()"
+                            >
+                                Back
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                Submit Assessment
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="loading-spinner" style="display: none">
+            <div class="spinner"></div>
+            <p>Processing assessment...</p>
+        </div>
+
+        <script src="js/app.js"></script>
+        <script src="js/form.js"></script>
+    </body>
+</html>
