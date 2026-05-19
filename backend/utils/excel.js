@@ -4,20 +4,17 @@ const generateExcelReport = async (assessmentData, scores) => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Assessment Report");
 
-    // 1. Atur Lebar Kolom Sesuai Permintaan
-    worksheet.getColumn("A").width = 5; // Kolom: No
-    worksheet.getColumn("B").width = 25; // Kolom: Variabel 5C
-    worksheet.getColumn("C").width = 45; // Kolom: Indikator Penilaian
-    worksheet.getColumn("D").width = 15; // Kolom: Skor
-
-    // 2. Header Judul Laporan
+    worksheet.getColumn("A").width = 5;
+    worksheet.getColumn("B").width = 25;
+    worksheet.getColumn("C").width = 45;
+    worksheet.getColumn("D").width = 15;
     worksheet.mergeCells("A1:D1");
     const titleCell = worksheet.getCell("A1");
     titleCell.value = "LAPORAN PENILAIAN KELAYAKAN KREDIT 5C";
     titleCell.font = { bold: true, size: 14 };
     titleCell.alignment = { horizontal: "center", vertical: "center" };
 
-    worksheet.addRow([]); // Baris kosong pembatas
+    worksheet.addRow([]);
 
     worksheet.addRow(["", "Nama Perusahaan", assessmentData.business_name, ""]);
     worksheet.addRow(["", "Nama Produk", assessmentData.product_name, ""]);
@@ -27,9 +24,7 @@ const generateExcelReport = async (assessmentData, scores) => {
         new Date(assessmentData.assessment_date).toLocaleDateString("id-ID"),
         "",
     ]);
-    worksheet.addRow([]); // Baris kosong pembatas
-
-    // 4. Pembuatan Header Tabel Utama
+    worksheet.addRow([]);
     const headerRow = worksheet.addRow([
         "No",
         "Variabel 5C",
@@ -39,13 +34,11 @@ const generateExcelReport = async (assessmentData, scores) => {
     headerRow.font = { bold: true };
     headerRow.alignment = { horizontal: "center", vertical: "middle" };
     headerRow.eachCell((cell) => {
-        // Beri warna latar abu-abu pada header tabel
         cell.fill = {
             type: "pattern",
             pattern: "solid",
             fgColor: { argb: "FFE0E0E0" },
         };
-        // Beri garis pembatas (border)
         cell.border = {
             top: { style: "thin" },
             left: { style: "thin" },
@@ -54,17 +47,14 @@ const generateExcelReport = async (assessmentData, scores) => {
         };
     });
 
-    // 5. Fungsi Helper: Memasukkan baris tabel beserta border & penomoran
     let indicatorNo = 1;
     const addDataRow = (variabel, indikator, skor, isAverage = false) => {
-        // Jika baris ini adalah rata-rata, kosongkan nomor. Jika tidak, tambah nomor urut.
         const rowNo = !isAverage ? indicatorNo++ : "";
         const row = worksheet.addRow([rowNo, variabel, indikator, skor]);
 
-        // Format teks jika ini baris Rata-rata
         if (isAverage) {
             row.font = { bold: true, italic: true };
-            row.getCell(3).alignment = { horizontal: "right" }; // Rata kanan untuk tulisan Rata-rata
+            row.getCell(3).alignment = { horizontal: "right" };
             row.getCell(4).fill = {
                 type: "pattern",
                 pattern: "solid",
@@ -72,7 +62,6 @@ const generateExcelReport = async (assessmentData, scores) => {
             };
         }
 
-        // Berikan border untuk setiap cell di tabel ini
         row.eachCell((cell) => {
             cell.border = {
                 top: { style: "thin" },
@@ -84,10 +73,6 @@ const generateExcelReport = async (assessmentData, scores) => {
 
         return row;
     };
-
-    // --- INPUT 22 INDIKATOR KE DALAM TABEL ---
-
-    // 1. DATA CHARACTER
     addDataRow(
         "Character (30%)",
         "Kemauan Berusaha",
@@ -118,8 +103,6 @@ const generateExcelReport = async (assessmentData, scores) => {
         Number(scores.characterScore).toFixed(2),
         true,
     );
-
-    // 2. DATA CAPACITY
     addDataRow(
         "Capacity (25%)",
         "Kemampuan Mengelola",
@@ -146,8 +129,6 @@ const generateExcelReport = async (assessmentData, scores) => {
         Number(scores.capacityScore).toFixed(2),
         true,
     );
-
-    // 3. DATA CAPITAL
     addDataRow(
         "Capital (15%)",
         "Posisi Modal & Laba Ditahan",
@@ -182,8 +163,6 @@ const generateExcelReport = async (assessmentData, scores) => {
         Number(scores.capitalScore).toFixed(2),
         true,
     );
-
-    // 4. DATA COLLATERAL
     addDataRow(
         "Collateral (20%)",
         "Jenis & Nilai Agunan",
@@ -202,8 +181,6 @@ const generateExcelReport = async (assessmentData, scores) => {
         Number(scores.collateralScore).toFixed(2),
         true,
     );
-
-    // 5. DATA CONDITION
     addDataRow(
         "Condition (10%)",
         "Pasar & Market Share",
@@ -231,16 +208,14 @@ const generateExcelReport = async (assessmentData, scores) => {
         true,
     );
 
-    worksheet.addRow([]); // Baris kosong sebelum hasil akhir
+    worksheet.addRow([]);
 
-    // 6. Ringkasan Hasil Akhir
     const addSummaryRow = (label, value) => {
         const row = worksheet.addRow(["", "", label, value]);
         row.getCell(3).font = { bold: true };
         row.getCell(4).font = { bold: true };
         row.getCell(3).alignment = { horizontal: "right" };
 
-        // Berikan garis (border) hanya untuk sel Keputusan Akhir
         row.getCell(3).border = {
             top: { style: "thin" },
             left: { style: "thin" },

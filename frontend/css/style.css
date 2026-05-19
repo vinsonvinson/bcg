@@ -1,4 +1,3 @@
-/* ===== ROOT VARIABLES ===== */
 :root {
     --primary-color: #1976d2;
     --secondary-color: #424242;
@@ -6,36 +5,28 @@
     --warning-color: #ffc107;
     --danger-color: #f44336;
     --info-color: #2196f3;
-
     --green-dark: #4caf50;
     --green-light: #8bc34a;
     --yellow: #ffc107;
     --red: #f44336;
-
     --light-bg: #f5f7fa;
     --light-text: #212121;
     --light-border: #e0e0e0;
-
     --dark-bg: #1a1a1a;
     --dark-text: #eceff1;
     --dark-border: #424242;
-
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
-
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
-
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
-
-/* ===== LIGHT THEME ===== */
 body.light-theme {
     --bg-color: var(--light-bg);
     --text-color: var(--light-text);
@@ -46,8 +37,6 @@ body.light-theme {
     --navbar-bg: #ffffff;
     --sidebar-bg: #fafafa;
 }
-
-/* ===== DARK THEME ===== */
 body.dark-theme {
     --bg-color: var(--dark-bg);
     --text-color: var(--dark-text);
@@ -58,14 +47,11 @@ body.dark-theme {
     --navbar-bg: #1a1a1a;
     --sidebar-bg: #212121;
 }
-
-/* ===== RESET & GLOBALS ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 html,
 body {
     height: 100%;
@@ -73,7 +59,6 @@ body {
         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
         Arial, sans-serif;
 }
-
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -81,8 +66,6 @@ body {
         background-color 0.3s ease,
         color 0.3s ease;
 }
-
-/* ===== LOGIN PAGE ===== */
 .login-container {
     display: flex;
     justify-content: center;
@@ -90,7 +73,6 @@ body {
     min-height: 100vh;
     background: var(--bg-color);
 }
-
 .login-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -102,7 +84,6 @@ body {
     overflow: hidden;
     animation: slideUp 0.5s ease;
 }
-
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -113,7 +94,6 @@ body {
         transform: translateY(0);
     }
 }
-
 .login-left {
     padding: var(--spacing-xl);
     display: flex;
@@ -124,12 +104,10 @@ body {
     background: var(--card-bg);
     color: var(--text-color);
 }
-
 .bcg-logo {
     margin-bottom: var(--spacing-lg);
     animation: bounce 2s infinite;
 }
-
 @keyframes bounce {
     0%,
     100% {
@@ -139,18 +117,15 @@ body {
         transform: translateY(-10px);
     }
 }
-
 .login-left h1 {
     font-size: 28px;
     margin-bottom: var(--spacing-sm);
 }
-
 .login-left p {
     font-size: 14px;
     opacity: 0.9;
     margin-bottom: var(--spacing-lg);
 }
-
 .ready-btn {
     display: inline-block;
     background: #ffffff;
@@ -164,35 +139,29 @@ body {
         transform 0.3s ease,
         box-shadow 0.3s ease;
 }
-
 .ready-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 .login-right {
     padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
 .login-form-wrapper h2 {
     margin-bottom: var(--spacing-lg);
     color: var(--primary-color);
 }
-
 .form-group {
     margin-bottom: var(--spacing-lg);
 }
-
 .form-group label {
     display: block;
     margin-bottom: var(--spacing-sm);
     font-weight: 500;
     color: var(--text-color);
 }
-
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -205,7 +174,6 @@ body {
     font-size: 14px;
     transition: border-color 0.3s ease;
 }
-
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -213,11 +181,9 @@ body {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
 }
-
 .password-input-wrapper {
     position: relative;
 }
-
 .toggle-password {
     position: absolute;
     right: 12px;
@@ -226,7 +192,6 @@ body {
     cursor: pointer;
     user-select: none;
 }
-
 .login-btn {
     width: 100%;
     padding: 12px;
@@ -241,23 +206,19 @@ body {
         transform 0.3s ease,
         box-shadow 0.3s ease;
 }
-
 .login-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 .login-btn:active {
     transform: translateY(0);
 }
-
 .login-help {
     font-size: 12px;
     color: #999;
     margin-top: var(--spacing-md);
     text-align: center;
 }
-
 .error-message {
     background: #ffebee;
     color: #c62828;
@@ -266,14 +227,12 @@ body {
     margin-top: var(--spacing-md);
     border-left: 4px solid #f44336;
 }
-
 .theme-toggle {
     position: fixed;
     bottom: var(--spacing-lg);
     right: var(--spacing-lg);
     z-index: 1000;
 }
-
 .theme-btn {
     background: var(--primary-color);
     color: white;
@@ -289,35 +248,26 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .theme-btn:hover {
     background: rgb(20, 95, 171);
 }
-
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .login-wrapper {
         grid-template-columns: 1fr;
     }
-
     .login-left {
         padding: var(--spacing-lg);
     }
-
     .login-right {
         padding: var(--spacing-lg);
     }
 }
-
-/* ===== APP CONTAINER ===== */
 .app-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: var(--bg-color);
 }
-
-/* ===== NAVBAR ===== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -330,31 +280,26 @@ body {
     top: 0;
     z-index: 100;
 }
-
 .navbar-left {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
 }
-
 .bcg-logo-small {
     font-size: 20px;
     font-weight: 700;
     color: var(--primary-color);
 }
-
 .nav-title {
     font-size: 18px;
     font-weight: 600;
     color: var(--text-color);
 }
-
 .navbar-right {
     display: flex;
     gap: var(--spacing-md);
     align-items: center;
 }
-
 .logout-btn {
     background: var(--danger-color);
     color: white;
@@ -365,12 +310,9 @@ body {
     font-size: 14px;
     transition: background 0.3s ease;
 }
-
 .logout-btn:hover {
     background: #d32f2f;
 }
-
-/* ===== FORM PAGE ===== */
 .form-container {
     flex: 1;
     padding: var(--spacing-lg);
@@ -378,14 +320,12 @@ body {
     margin: 0 auto;
     width: 100%;
 }
-
 .progress-bar {
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--spacing-xl);
     position: relative;
 }
-
 .progress-bar::before {
     content: "";
     position: absolute;
@@ -396,7 +336,6 @@ body {
     background: var(--border-color);
     z-index: 0;
 }
-
 .progress-step {
     display: flex;
     flex-direction: column;
@@ -405,7 +344,6 @@ body {
     position: relative;
     z-index: 1;
 }
-
 .step-number {
     width: 40px;
     height: 40px;
@@ -418,24 +356,20 @@ body {
     font-weight: 600;
     transition: all 0.3s ease;
 }
-
 .progress-step.active .step-number {
     background: var(--primary-color);
     color: white;
     box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.1);
 }
-
 .progress-step.completed .step-number {
     background: var(--success-color);
     color: white;
 }
-
 .step-label {
     font-size: 12px;
     font-weight: 500;
     color: var(--text-color);
 }
-
 .form-step {
     display: none;
     background: var(--card-bg);
@@ -444,7 +378,6 @@ body {
     box-shadow: var(--shadow-md);
     animation: fadeIn 0.3s ease;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -453,17 +386,14 @@ body {
         opacity: 1;
     }
 }
-
 .form-step.active {
     display: block;
 }
-
 .form-step h2 {
     margin-bottom: var(--spacing-lg);
     color: var(--primary-color);
     font-size: 24px;
 }
-
 .form-step h3 {
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
@@ -472,26 +402,22 @@ body {
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: var(--spacing-sm);
 }
-
 .form-step hr {
     margin: var(--spacing-lg) 0;
     border: none;
     border-top: 1px solid var(--border-color);
 }
-
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
 }
-
 @media (max-width: 768px) {
     .form-row {
         grid-template-columns: 1fr;
     }
 }
-
 .category-section {
     margin-bottom: var(--spacing-xl);
     padding: var(--spacing-lg);
@@ -503,24 +429,20 @@ body {
     border-left: 4px solid var(--primary-color);
     border-radius: var(--radius-md);
 }
-
 .assessment-item {
     margin-bottom: var(--spacing-lg);
 }
-
 .assessment-item label:first-child {
     display: block;
     font-weight: 600;
     margin-bottom: var(--spacing-md);
     color: var(--text-color);
 }
-
 .score-options {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-md);
 }
-
 .score-options label {
     display: flex;
     align-items: center;
@@ -531,23 +453,18 @@ body {
     border-radius: var(--radius-md);
     transition: background 0.3s ease;
 }
-
 .score-options label:hover {
     background: rgba(25, 118, 210, 0.1);
 }
-
 .score-options input[type="radio"] {
     cursor: pointer;
     width: 18px;
     height: 18px;
 }
-
 .score-options input[type="radio"]:checked + label::after {
     content: "✓";
     color: var(--success-color);
 }
-
-/* Styling for dropdown selects used in 5C form */
 .assessment-item select {
     width: 260px;
     max-width: 100%;
@@ -561,22 +478,17 @@ body {
     -moz-appearance: none;
     appearance: none;
 }
-
 .assessment-item .select-row {
     display: flex;
     gap: var(--spacing-md);
     align-items: center;
     flex-wrap: wrap;
 }
-
-/* Make select compact on small screens */
 @media (max-width: 768px) {
     .assessment-item select {
         width: 100%;
     }
 }
-
-/* Download button in assessments table */
 .btn-download {
     padding: 6px 10px;
     background: var(--primary-color);
@@ -586,18 +498,15 @@ body {
     cursor: pointer;
     font-size: 13px;
 }
-
 .btn-download:hover {
     opacity: 0.95;
 }
-
 .form-buttons {
     display: flex;
     gap: var(--spacing-md);
     margin-top: var(--spacing-xl);
     justify-content: space-between;
 }
-
 .btn {
     padding: 12px 24px;
     border: none;
@@ -607,69 +516,57 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .btn-primary {
     background: var(--primary-color);
     color: white;
 }
-
 .btn-primary:hover {
     background: #1565c0;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
-
 .btn-secondary {
     background: var(--border-color);
     color: var(--text-color);
 }
-
 .btn-secondary:hover {
     background: #bdbdbd;
 }
-
 .btn-success {
     background: var(--success-color);
     color: white;
     width: 100%;
 }
-
 .btn-success:hover {
     background: #388e3c;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
-
 .summary-review {
     background: var(--sidebar-bg);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-lg);
 }
-
 .summary-item {
     display: flex;
     justify-content: space-between;
     padding: 12px 0;
     border-bottom: 1px solid var(--border-color, #eee);
 }
-
 .summary-item:last-child {
     border-bottom: none;
 }
-
 .summary-label {
     flex: 1;
     padding-right: 15px;
     font-weight: 500;
 }
-
 .summary-value {
     font-weight: 600;
     text-align: right;
     color: var(--primary-color, #1976d2);
 }
-
 .loading-spinner {
     position: fixed;
     top: 0;
@@ -683,7 +580,6 @@ body {
     justify-content: center;
     z-index: 1000;
 }
-
 .spinner {
     border: 4px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
@@ -692,26 +588,21 @@ body {
     height: 40px;
     animation: spin 0.8s linear infinite;
 }
-
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
 }
-
 .loading-spinner p {
     color: white;
     margin-top: var(--spacing-lg);
     font-size: 18px;
 }
-
-/* ===== DASHBOARD PAGE ===== */
 .dashboard-container {
     display: flex;
     flex: 1;
     overflow: hidden;
 }
-
 .sidebar {
     width: 250px;
     background-color: var(--sidebar-bg);
@@ -719,7 +610,6 @@ body {
     padding: var(--spacing-md);
     overflow-y: auto;
 }
-
 .menu-item {
     display: flex;
     align-items: center;
@@ -730,62 +620,51 @@ body {
     transition: all 0.3s ease;
     margin-bottom: var(--spacing-sm);
 }
-
 .menu-item:hover {
     background: rgba(25, 118, 210, 0.1);
     transform: translateX(4px);
 }
-
 .menu-item.active {
     background: rgba(25, 118, 210, 0.2);
     color: var(--primary-color);
     font-weight: 600;
 }
-
 .menu-item .icon {
     font-size: 20px;
 }
-
 .sidebar hr {
     border: none;
     border-top: 1px solid var(--border-color);
     margin: var(--spacing-md) 0;
 }
-
 .dashboard-main {
     flex: 1;
     padding: var(--spacing-lg);
     overflow-y: auto;
 }
-
 .content-section {
     display: none;
     animation: fadeIn 0.3s ease;
 }
-
 .content-section.active {
     display: block;
 }
-
 .content-section h2 {
     margin-bottom: var(--spacing-lg);
     color: var(--primary-color);
     font-size: 28px;
 }
-
 .content-section h3 {
     margin-bottom: var(--spacing-md);
     color: var(--text-color);
     font-size: 18px;
 }
-
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
 }
-
 .stat-card {
     background: var(--card-bg);
     padding: var(--spacing-lg);
@@ -798,12 +677,10 @@ body {
         transform 0.3s ease,
         box-shadow 0.3s ease;
 }
-
 .stat-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
 }
-
 .stat-icon {
     width: 60px;
     height: 60px;
@@ -813,50 +690,42 @@ body {
     justify-content: center;
     font-size: 28px;
 }
-
 .stat-label {
     font-size: 12px;
     color: #999;
     margin-bottom: var(--spacing-sm);
 }
-
 .stat-value {
     font-size: 28px;
     font-weight: 700;
     color: var(--primary-color);
 }
-
 .charts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
 }
-
 .chart-container {
     background: var(--card-bg);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
 }
-
 .chart-container h3 {
     margin-bottom: var(--spacing-lg);
 }
-
 .recent-section {
     background: var(--card-bg);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
 }
-
 .recent-list {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
 }
-
 .recent-item {
     display: flex;
     justify-content: space-between;
@@ -866,26 +735,21 @@ body {
     border-radius: var(--radius-md);
     transition: all 0.3s ease;
 }
-
 .recent-item:hover {
     background: rgba(25, 118, 210, 0.05);
     border-color: var(--primary-color);
 }
-
 .recent-item-info {
     flex: 1;
 }
-
 .recent-item-business {
     font-weight: 600;
     color: var(--text-color);
 }
-
 .recent-item-date {
     font-size: 12px;
     color: #999;
 }
-
 .recent-item-score {
     background: rgba(25, 118, 210, 0.1);
     color: var(--primary-color);
@@ -894,13 +758,11 @@ body {
     font-weight: 600;
     font-size: 14px;
 }
-
 .filter-bar {
     display: flex;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
 }
-
 .search-input,
 .filter-select {
     padding: 10px var(--spacing-md);
@@ -910,22 +772,18 @@ body {
     color: var(--text-color);
     font-size: 14px;
 }
-
 .search-input {
     flex: 1;
 }
-
 .search-input::placeholder {
     color: #999;
 }
-
 .assessments-table {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
 }
-
 .table-header {
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
@@ -935,7 +793,6 @@ body {
     font-weight: 600;
     color: var(--primary-color);
 }
-
 .table-row {
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
@@ -944,11 +801,9 @@ body {
     align-items: center;
     transition: background 0.3s ease;
 }
-
 .table-row:hover {
     background: rgba(25, 118, 210, 0.05);
 }
-
 .status-badge {
     display: inline-block;
     padding: 4px 12px;
@@ -956,27 +811,22 @@ body {
     font-size: 12px;
     font-weight: 600;
 }
-
 .status-Risiko_Diterima {
     background: rgba(76, 175, 80, 0.2);
     color: var(--success-color);
 }
-
 .status-Risiko_Dimitigasi {
     background: rgba(139, 195, 74, 0.2);
     color: #8bc34a;
 }
-
 .status-Risiko_Dipindahkan {
     background: rgba(255, 193, 7, 0.2);
     color: var(--warning-color);
 }
-
 .status-Risiko_Dihindari {
     background: rgba(244, 67, 54, 0.2);
     color: var(--danger-color);
 }
-
 .zone-badge {
     display: inline-block;
     padding: 4px 12px;
@@ -984,81 +834,66 @@ body {
     font-size: 12px;
     font-weight: 600;
 }
-
 .zone-green-dark {
     background: rgba(76, 175, 80, 0.15);
     color: var(--green-dark);
 }
-
 .zone-green-light {
     background: rgba(139, 195, 74, 0.15);
     color: var(--green-light);
 }
-
 .zone-yellow {
     background: rgba(255, 193, 7, 0.15);
     color: var(--yellow);
 }
-
 .zone-red {
     background: rgba(244, 67, 54, 0.15);
     color: var(--red);
 }
-
 .risk-zones-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--spacing-lg);
 }
-
 .risk-zone-card {
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     color: white;
     box-shadow: var(--shadow-md);
 }
-
 .risk-zone-card h3 {
     margin-bottom: var(--spacing-sm);
     color: white;
     font-size: 18px;
 }
-
 .zone-label {
     font-size: 12px;
     opacity: 0.9;
     margin-bottom: var(--spacing-md);
 }
-
 .zone-count {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: var(--spacing-md);
 }
-
 .zone-desc {
     font-size: 13px;
     line-height: 1.5;
     opacity: 0.95;
 }
-
 .risk-zone-card.zone-green-dark {
     background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
 }
-
 .risk-zone-card.zone-green-light {
     background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
 }
-
 .risk-zone-card.zone-yellow {
     background: linear-gradient(135deg, #ffc107 0%, #f9a825 100%);
     color: #333;
 }
-
 .risk-zone-card.zone-red {
     background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
 }
-
 .settings-group {
     background: var(--card-bg);
     padding: var(--spacing-lg);
@@ -1066,12 +901,10 @@ body {
     margin-bottom: var(--spacing-lg);
     box-shadow: var(--shadow-sm);
 }
-
 .settings-group h3 {
     margin-bottom: var(--spacing-lg);
     color: var(--primary-color);
 }
-
 .settings-item {
     display: flex;
     justify-content: space-between;
@@ -1079,11 +912,9 @@ body {
     padding: var(--spacing-md) 0;
     border-bottom: 1px solid var(--border-color);
 }
-
 .settings-item:last-child {
     border-bottom: none;
 }
-
 .toggle-switch {
     background: var(--border-color);
     border: none;
@@ -1094,11 +925,9 @@ body {
     transition: all 0.3s ease;
     position: relative;
 }
-
 .toggle-switch.active {
     background: var(--success-color);
 }
-
 .modal {
     position: fixed;
     top: 0;
@@ -1111,7 +940,6 @@ body {
     justify-content: center;
     z-index: 1001;
 }
-
 .modal-content {
     background: var(--card-bg);
     padding: var(--spacing-lg);
@@ -1123,7 +951,6 @@ body {
     position: relative;
     box-shadow: var(--shadow-lg);
 }
-
 .close-btn {
     position: absolute;
     top: var(--spacing-md);
@@ -1132,38 +959,30 @@ body {
     cursor: pointer;
     color: var(--text-color);
 }
-
-/* Membuat pembungkus tabel bisa di-scroll horizontal */
 #assessmentsList {
     width: 100%;
-    overflow-x: auto; /* Memunculkan scrollbar jika konten melebihi layar */
-    -webkit-overflow-scrolling: touch; /* Untuk scroll yang halus di smartphone */
-    padding-bottom: 10px; /* Memberi ruang untuk scrollbar */
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    padding-bottom: 10px; 
 }
-
-/* Memaksa baris tabel memiliki lebar minimum agar tidak menyusut/terlipat */
 .table-header,
 .table-row {
-    min-width: 900px !important; /* Sesuaikan angka ini jika kolom masih terasa sempit */
+    min-width: 900px !important; 
     width: 100%;
 }
-
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
-
 .filter-container,
 div:has(> #searchInput) {
-    /* Menargetkan div pembungkus input search otomatis */
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
     align-items: center;
     width: 100%;
 }
-
 #searchInput,
 #statusFilter {
     padding: 10px 14px;
@@ -1171,12 +990,10 @@ div:has(> #searchInput) {
     border-radius: 8px;
     background-color: var(--card-bg, #fff);
     color: var(--text-color, #333);
-    font-size: 16px; /* Wajib 16px agar tidak auto-zoom di iOS */
-    min-height: 48px; /* UX Mobile: Area klik standar minimum */
+    font-size: 16px; 
+    min-height: 48px; 
     outline: none;
 }
-
-/* Biarkan Search bar memanjang di desktop, filter status menyesuaikan isinya */
 #searchInput {
     flex: 1;
 }
@@ -1184,43 +1001,34 @@ div:has(> #searchInput) {
     min-width: 200px;
     cursor: pointer;
 }
-
 #searchInput:focus,
 #statusFilter:focus {
     border-color: var(--primary-color, #1976d2);
     box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
 }
-
 .nav-logo {
-    height: 32px; /* Sesuaikan tinggi logo jika kurang besar/kecil */
+    height: 32px; 
     width: auto;
-    object-fit: contain; /* Mencegah gambar menjadi gepeng */
+    object-fit: contain; 
 }
-
-/* Memastikan logo dan teks "BCG Skoring" sejajar secara horizontal */
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px; /* Memberi jarak antara logo dan teks */
+    gap: 12px; 
     font-size: 20px;
     font-weight: bold;
     color: var(--primary-color);
 }
-
-/* Mengatur ukuran logo di Halaman Login */
 .login-logo {
-    height: 80px; /* Sesuaikan tinggi logo untuk halaman login */
+    height: 80px; 
     width: auto;
     object-fit: contain;
-    margin-bottom: 10px; /* Memberi jarak antara logo dan judul "Log In - BCG" */
+    margin-bottom: 10px; 
 }
-
-/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .dashboard-container {
         flex-direction: column;
     }
-
     .sidebar {
         width: 100%;
         max-height: 60px;
@@ -1229,26 +1037,21 @@ div:has(> #searchInput) {
         border-right: none;
         border-bottom: 1px solid var(--border-color);
     }
-
     .menu-item {
         flex-shrink: 0;
     }
 }
-
 @media (max-width: 768px) {
     .stats-grid {
         grid-template-columns: 1fr;
     }
-
     .form-row {
         grid-template-columns: 1fr;
     }
-
     .progress-bar {
         flex-direction: column;
         align-items: flex-start;
     }
-
     .progress-bar::before {
         width: 2px;
         height: auto;
@@ -1256,29 +1059,23 @@ div:has(> #searchInput) {
         top: 0;
         bottom: 0;
     }
-
     .progress-step {
         margin-left: 40px;
         margin-bottom: var(--spacing-md);
     }
-
     .filter-container,
     div:has(> #searchInput) {
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 12px;
     }
-
-    /* Pastikan keduanya melebar penuh 100% dari kiri ke kanan */
     #searchInput,
     #statusFilter {
         width: 100% !important;
         min-width: 100% !important;
     }
 }
-
 @media screen and (max-width: 768px) {
-    /* 1. Ruang (Spacing) yang Lebih Lega */
     .form-container,
     .card,
     .modal-content {
@@ -1286,84 +1083,68 @@ div:has(> #searchInput) {
         margin: 10px !important;
         border-radius: 12px;
     }
-
-    /* 2. Layout Form: 2 Kolom -> 1 Kolom (Stacking) */
     .form-grid {
         grid-template-columns: 1fr !important;
         gap: 15px;
     }
-
-    /* 3. Optimalisasi Area Sentuh & Mencegah Auto-Zoom di iOS */
     input[type="text"],
     input[type="number"],
     select,
     .btn,
     button {
-        min-height: 48px !important; /* Area klik standar UX mobile */
-        font-size: 16px !important; /* Wajib 16px agar Safari iPhone tidak zoom otomatis saat diketik */
+        min-height: 48px !important; 
+        font-size: 16px !important; 
         padding: 10px 14px;
-        width: 100% !important; /* Pastikan penuh selebar layar */
+        width: 100% !important; 
     }
-
-    /* 4. Perbaikan UX Stepper / Progress Bar */
     .progress-bar {
         flex-direction: row;
         flex-wrap: nowrap;
-        overflow-x: auto; /* Bisa digeser horizontal jika terlalu panjang */
+        overflow-x: auto; 
         -webkit-overflow-scrolling: touch;
         gap: 10px;
         padding-bottom: 10px;
         justify-content: flex-start;
     }
-
     .progress-step {
         font-size: 13px;
-        white-space: nowrap; /* Teks step tidak turun ke bawah */
+        white-space: nowrap; 
         flex: 0 0 auto;
     }
-
-    /* 5. Summary & Detail Skor menjadi Vertikal */
     .summary-item,
     .score-item {
         flex-direction: column;
         align-items: flex-start;
         padding: 12px 0;
     }
-
     .summary-value,
     .score-item .score-value {
         text-align: left;
         margin-top: 6px;
         font-size: 15px;
     }
-
-    /* 6. Tombol Form & Modal Berjejer Ke Bawah (Lebih mudah dijangkau jempol) */
     .button-group,
     .modal-actions,
     div[style*="display: flex; gap: 10px;"] {
         display: flex;
-        flex-direction: column-reverse; /* Tombol Submit/Next di atas, Cancel/Prev di bawah */
+        flex-direction: column-reverse; 
         gap: 12px !important;
         width: 100%;
         margin-top: 20px;
     }
-
     .button-group button,
     .modal-actions button,
     div[style*="display: flex"] button {
         width: 100%;
         margin: 0 !important;
     }
-
-    /* 7. Perbaikan Tampilan Modal (Total Skor) */
     .total-score {
         flex-direction: column;
         align-items: center;
         text-align: center;
         gap: 8px;
     }
-
     .score-value-large {
-        font-size: 32px !important; /* Ukuran besar tapi tetap proporsional */
+        font-size: 32px !important; 
     }
 }

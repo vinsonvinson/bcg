@@ -1,9 +1,5 @@
--- Simplified Database Schema for BCG Credit Scoring System
--- Based on 5C Method with 22 indicators and minimal relational complexity
-
 CREATE DATABASE IF NOT EXISTS bcg_scoring;
 USE bcg_scoring;
-
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(50) UNIQUE NOT NULL,
@@ -17,7 +13,6 @@ CREATE TABLE users (
   INDEX (username),
   INDEX (email)
 );
-
 CREATE TABLE assessments (
   id INT AUTO_INCREMENT PRIMARY KEY,
   assessment_code VARCHAR(50) UNIQUE NOT NULL,
@@ -35,7 +30,6 @@ CREATE TABLE assessments (
   INDEX (status),
   INDEX (risk_zone)
 );
-
 CREATE TABLE character_scores (
   id INT AUTO_INCREMENT PRIMARY KEY,
   assessment_id INT NOT NULL UNIQUE,
@@ -46,7 +40,6 @@ CREATE TABLE character_scores (
   average_score DECIMAL(3,2) NOT NULL,
   FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE
 );
-
 CREATE TABLE capacity_scores (
   id INT AUTO_INCREMENT PRIMARY KEY,
   assessment_id INT NOT NULL UNIQUE,
@@ -59,7 +52,6 @@ CREATE TABLE capacity_scores (
   average_score DECIMAL(3,2) NOT NULL,
   FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE
 );
-
 CREATE TABLE capital_scores (
   id INT AUTO_INCREMENT PRIMARY KEY,
   assessment_id INT NOT NULL UNIQUE,
@@ -70,7 +62,6 @@ CREATE TABLE capital_scores (
   average_score DECIMAL(3,2) NOT NULL,
   FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE
 );
-
 CREATE TABLE collateral_scores (
   id INT AUTO_INCREMENT PRIMARY KEY,
   assessment_id INT NOT NULL UNIQUE,
@@ -81,7 +72,6 @@ CREATE TABLE collateral_scores (
   average_score DECIMAL(3,2) NOT NULL,
   FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE
 );
-
 CREATE TABLE condition_scores (
   id INT AUTO_INCREMENT PRIMARY KEY,
   assessment_id INT NOT NULL UNIQUE,
@@ -92,6 +82,5 @@ CREATE TABLE condition_scores (
   average_score DECIMAL(3,2) NOT NULL,
   FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE
 );
-
 INSERT INTO users (username, password, email, full_name, role)
 VALUES ('admin', '$2a$10$maMKpQrc6Od5mXXdpk5XC.XYFATFYJQJ9X4z0Nxox4TN/N0t9CHTK', 'admin@bcg.com', 'Administrator', 'admin');

@@ -99,7 +99,7 @@ const AssessmentController = {
                 return res.status(404).json({ error: "Assessment not found" });
             }
 
-            // Create scores for each 5C variable
+
             await Score.createCharacterScore(id, {
                 willingness: characterScores.willingness,
                 integrity: characterScores.integrity,
@@ -142,7 +142,6 @@ const AssessmentController = {
                 average: calculateConditionScore(conditionScores),
             });
 
-            // Calculate total score
             const charScore = calculateCharacterScore(characterScores);
             const capScore = calculateCapacityScore(capacityScores);
             const capitalScore = calculateCapitalScore(capitalScores);
@@ -157,7 +156,6 @@ const AssessmentController = {
             );
             const riskZone = mapToRiskZone(totalScore);
 
-            // Update assessment with scores and decision
             const status =
                 riskZone.zone === "MERAH"
                     ? "Risiko_Dihindari"
@@ -211,8 +209,7 @@ const AssessmentController = {
                 collateralScore: scores.collateral?.average_score || 0,
                 conditionScore: scores.condition?.average_score || 0,
 
-                // Tambahkan detail indikator (Raw data dari database)
-                characterDetail: scores.character || {},
+                characterDetail: scores.character || {},,
                 capacityDetail: scores.capacity || {},
                 capitalDetail: scores.capital || {},
                 collateralDetail: scores.collateral || {},

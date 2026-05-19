@@ -1,4 +1,3 @@
-// Form Module
 let currentStep = 1;
 const totalSteps = 3;
 
@@ -33,18 +32,15 @@ function previousStep() {
 }
 
 function updateSteps() {
-    // Hide all steps
     document.querySelectorAll(".form-step").forEach((step) => {
         step.classList.remove("active");
     });
 
-    // Show current step
     const currentStepElement = document.getElementById(`step-${currentStep}`);
     if (currentStepElement) {
         currentStepElement.classList.add("active");
     }
 
-    // Update progress bar
     document.querySelectorAll(".progress-step").forEach((step, index) => {
         step.classList.remove("active", "completed");
 
@@ -55,7 +51,6 @@ function updateSteps() {
         }
     });
 
-    // Scroll to top
     document.querySelector(".form-container").scrollTop = 0;
 }
 
@@ -63,7 +58,6 @@ function validateStep(stepNum) {
     const form = document.getElementById("assessmentForm");
 
     if (stepNum === 1) {
-        // Validate business info
         const requiredFields = ["business_name", "product_name"];
 
         for (let field of requiredFields) {
@@ -74,7 +68,6 @@ function validateStep(stepNum) {
             }
         }
     } else if (stepNum === 2) {
-        // Validate 5C scores using dropdown selects
         const requiredScores = [
             "character_willingness",
             "character_integrity",
@@ -119,7 +112,6 @@ function generateSummary() {
     const formData = new FormData(form);
     let html = "";
 
-    // Business Information
     html +=
         '<div class="summary-item"><span class="summary-label">Business Name:</span><span class="summary-value">' +
         formData.get("business_name") +
@@ -131,7 +123,6 @@ function generateSummary() {
 
     html += '<hr style="margin: 20px 0;">';
 
-    // 5C Scores Summary
     const scores = {
         Character: {
             Willingness: formData.get("character_willingness"),
@@ -190,7 +181,6 @@ async function handleSubmitAssessment(e) {
         const form = document.getElementById("assessmentForm");
         const formData = new FormData(form);
 
-        // Create assessment first
         const assessmentResponse = await apiCall("/assessments", {
             method: "POST",
             body: JSON.stringify({
@@ -201,7 +191,6 @@ async function handleSubmitAssessment(e) {
 
         const assessmentId = assessmentResponse.assessmentId;
 
-        // Submit scores
         const scoresResponse = await apiCall(
             `/assessments/${assessmentId}/scores`,
             {
@@ -273,7 +262,6 @@ async function handleSubmitAssessment(e) {
 
         hideLoading();
 
-        // Show result
         const result = scoresResponse.scores;
         showResultModal(
             result,
@@ -407,7 +395,6 @@ function goToDashboard() {
     window.location.href = "/dashboard";
 }
 
-// Add CSS for result modal
 const style = document.createElement("style");
 style.textContent = `
   .result-modal {

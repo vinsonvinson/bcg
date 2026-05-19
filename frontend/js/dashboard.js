@@ -1,11 +1,9 @@
-// Dashboard Module
 let dashboardData = null;
 
 document.addEventListener("DOMContentLoaded", function () {
     checkAuth();
     loadDashboardData();
 
-    // Setup menu items
     document.querySelectorAll(".menu-item").forEach((item) => {
         item.addEventListener("click", function () {
             const section = this.getAttribute("data-section");
@@ -17,18 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function showSection(sectionId) {
-    // Hide all sections
     document.querySelectorAll(".content-section").forEach((section) => {
         section.classList.remove("active");
     });
 
-    // Show selected section
     const section = document.getElementById(sectionId);
     if (section) {
         section.classList.add("active");
     }
 
-    // Update menu items
     document.querySelectorAll(".menu-item").forEach((item) => {
         item.classList.remove("active");
     });
@@ -40,7 +35,6 @@ function showSection(sectionId) {
         menuItem.classList.add("active");
     }
 
-    // Reinitialize charts if needed
     if (sectionId === "assessments") {
         loadAllAssessments();
     }
@@ -51,13 +45,10 @@ async function loadDashboardData() {
         const response = await apiCall("/dashboard/summary");
         dashboardData = response;
 
-        // Update stats
         updateStats(response.summary);
 
-        // Update recent assessments
         updateRecentAssessments(response.recent);
 
-        // Update risk zones
         updateRiskZones(response.riskZones);
     } catch (error) {
         console.error("Error loading dashboard:", error);
@@ -137,7 +128,6 @@ function getZoneClass(zone) {
     return "default";
 }
 
-// Load and display all assessments
 async function loadAllAssessments() {
     const container = document.getElementById("assessmentsList");
     if (!container) return;
@@ -175,7 +165,6 @@ async function loadAllAssessments() {
     }
 }
 
-// Search and filter assessments
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("searchInput");
     const statusFilter = document.getElementById("statusFilter");
@@ -188,7 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
         statusFilter.addEventListener("change", filterAssessments);
     }
 
-    // Show assessments when clicking on menu
     const assessmentsMenu = document.querySelector('[onclick*="assessments"]');
     if (assessmentsMenu) {
         assessmentsMenu.addEventListener("click", loadAllAssessments);
@@ -212,7 +200,6 @@ function filterAssessments() {
     });
 }
 
-// Download assessment Excel file
 async function downloadExcel(assessmentId) {
     try {
         const token = localStorage.getItem("token");
@@ -230,7 +217,6 @@ async function downloadExcel(assessmentId) {
 
         const blob = await res.blob();
 
-        // Try to extract filename from header
         let filename = `Assessment-${assessmentId}.xlsx`;
         const cd = res.headers.get("Content-Disposition");
         if (cd) {
@@ -255,7 +241,6 @@ async function downloadExcel(assessmentId) {
     }
 }
 
-// Close modal
 function closeModal() {
     const modal = document.getElementById("modal");
     if (modal) {
@@ -263,7 +248,6 @@ function closeModal() {
     }
 }
 
-// Listen to modal close
 document.addEventListener("click", function (event) {
     const modal = document.getElementById("modal");
     if (event.target === modal) {
@@ -271,7 +255,6 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// Display user info
 document.addEventListener("DOMContentLoaded", function () {
     const user = getUser();
     if (user) {

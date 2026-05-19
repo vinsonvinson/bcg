@@ -1,7 +1,5 @@
-// Global Configuration
 const API_BASE_URL = "http://localhost:3000/api";
 
-// Utility Functions
 const getToken = () => localStorage.getItem("token");
 const setToken = (token) => localStorage.setItem("token", token);
 const removeToken = () => localStorage.removeItem("token");
@@ -16,7 +14,6 @@ const removeUser = () => localStorage.removeItem("user");
 
 const isLoggedIn = () => !!getToken();
 
-// Redirect to login if not logged in
 const checkAuth = () => {
     if (
         !isLoggedIn() &&
@@ -27,7 +24,6 @@ const checkAuth = () => {
     }
 };
 
-// API Helper
 async function apiCall(endpoint, options = {}) {
     const url = `${API_BASE_URL}${endpoint}`;
     const headers = {
@@ -46,12 +42,10 @@ async function apiCall(endpoint, options = {}) {
             headers,
         });
 
-        // PERBAIKAN DI SINI:
         if (response.status === 401) {
             removeToken();
             removeUser();
 
-            // Hanya alihkan halaman jika error 401 BUKAN berasal dari endpoint login
             if (!endpoint.includes("login") && !endpoint.includes("auth")) {
                 window.location.href = "/";
                 return;
@@ -71,7 +65,6 @@ async function apiCall(endpoint, options = {}) {
     }
 }
 
-// Theme Management
 function initTheme() {
     const theme = localStorage.getItem("theme") || "light";
     document.body.classList.remove("light-theme", "dark-theme");
@@ -99,7 +92,6 @@ function updateThemeButtonText(theme) {
     }
 }
 
-// Setup theme toggle listeners
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
 
@@ -115,24 +107,20 @@ document.addEventListener("DOMContentLoaded", () => {
     checkAuth();
 });
 
-// Navigation
 function navigateTo(path) {
     window.location.href = path;
 }
 
-// Show loading spinner
 function showLoading() {
     const spinner = document.getElementById("loadingSpinner");
     if (spinner) spinner.style.display = "flex";
 }
 
-// Hide loading spinner
 function hideLoading() {
     const spinner = document.getElementById("loadingSpinner");
     if (spinner) spinner.style.display = "none";
 }
 
-// Format number to Indonesian currency
 function formatCurrency(value) {
     return new Intl.NumberFormat("id-ID", {
         style: "currency",
@@ -140,7 +128,6 @@ function formatCurrency(value) {
     }).format(value);
 }
 
-// Format date
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString("id-ID", {
@@ -150,16 +137,13 @@ function formatDate(dateString) {
     });
 }
 
-// Show notification
 function showNotification(message, type = "info") {
-    // Simple notification - can be enhanced with toast library
     const timeoutId = setTimeout(() => {
         alert(message);
     }, 100);
     return timeoutId;
 }
 
-// Copy to clipboard
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         showNotification("Copied to clipboard", "success");
@@ -167,20 +151,15 @@ function copyToClipboard(text) {
 }
 
 function handleLogout(e) {
-    if (e) e.preventDefault(); // Mencegah reload halaman bawaan tag <a> atau <form>
+    if (e) e.preventDefault();
 
-    // 1. Hapus kredensial dari LocalStorage
     removeToken();
     removeUser();
 
-    // 2. Redirect (Arahkan) kembali ke halaman Login
-    // Ubah '/' menjadi 'index.html' jika saat dijalankan manual halamannya bernama index.html
     window.location.href = "index.html";
 }
 
-// Pasangkan fungsi ke tombol saat halaman selesai dimuat
 document.addEventListener("DOMContentLoaded", () => {
-    // Cari tombol dengan ID btnLogout
     const logoutBtn = document.getElementById("btnLogout");
 
     if (logoutBtn) {

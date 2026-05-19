@@ -127,7 +127,6 @@ const Score = {
                 [assessmentId],
             );
 
-            // MAPPING: Menyesuaikan raw data (snake_case) dari MySQL menjadi camelCase untuk sisa aplikasi
             return {
                 character: character[0]
                     ? {

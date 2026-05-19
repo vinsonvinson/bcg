@@ -1,4 +1,3 @@
-// Authentication Module
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("loginForm");
     const togglePasswordBtn = document.getElementById("togglePassword");
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Check if already logged in
     if (isLoggedIn()) {
         const currentPage = window.location.pathname;
         if (currentPage === "/" || currentPage.endsWith("index.html")) {
@@ -80,7 +78,6 @@ function handleLogout() {
     window.location.href = "/";
 }
 
-// Setup logout button
 document.addEventListener("DOMContentLoaded", function () {
     const logoutBtns = document.querySelectorAll("#logoutBtn");
     logoutBtns.forEach((btn) => {
