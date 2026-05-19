@@ -11,12 +11,17 @@
             <!-- Navbar -->
             <nav class="navbar">
                 <div class="navbar-left">
-                    <div class="bcg-logo-small">BCG</div>
-                    <span class="nav-title">Assessment Dashboard</span>
+                    <div class="logo">
+                        <img
+                            src="images/logo.png"
+                            alt="Logo BCG"
+                            class="nav-logo"
+                        />
+                    </div>
                 </div>
                 <div class="navbar-right">
                     <button id="themeToggle" class="theme-btn"></button>
-                    <button id="logoutBtn" class="logout-btn">Logout</button>
+                    <button id="btnLogout" class="logout-btn">Logout</button>
                 </div>
             </nav>
 
@@ -28,7 +33,7 @@
                         onclick="showSection('overview')"
                     >
                         <span class="icon">📊</span>
-                        <span>Overview</span>
+                        <span>Dashboard</span>
                     </div>
                     <div class="menu-item" onclick="showSection('assessments')">
                         <span class="icon">📋</span>
@@ -45,7 +50,7 @@
                 <main class="dashboard-main">
                     <!-- Overview Section -->
                     <section id="overview" class="content-section active">
-                        <h2>Overview</h2>
+                        <h2>Dashboard</h2>
 
                         <div class="stats-grid">
                             <div class="stat-card">
@@ -57,7 +62,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="stat-label">
-                                        Total Assessments
+                                        Total Assessment
                                     </div>
                                     <div
                                         class="stat-value"
@@ -76,7 +81,9 @@
                                     ✅
                                 </div>
                                 <div class="stat-content">
-                                    <div class="stat-label">Approved</div>
+                                    <div class="stat-label">
+                                        Risiko Diterima
+                                    </div>
                                     <div class="stat-value" id="approvedCount">
                                         0
                                     </div>
@@ -91,7 +98,9 @@
                                     📝
                                 </div>
                                 <div class="stat-content">
-                                    <div class="stat-label">Mitigated</div>
+                                    <div class="stat-label">
+                                        Risiko Dimitigasi
+                                    </div>
                                     <div class="stat-value" id="mitigatedCount">
                                         0
                                     </div>
@@ -107,7 +116,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="stat-label">
-                                        Pending Collateral
+                                        Risiko Dipindahkan
                                     </div>
                                     <div class="stat-value" id="pendingCount">
                                         0
@@ -123,7 +132,9 @@
                                     ❌
                                 </div>
                                 <div class="stat-content">
-                                    <div class="stat-label">Rejected</div>
+                                    <div class="stat-label">
+                                        Risiko Dihindari
+                                    </div>
                                     <div class="stat-value" id="rejectedCount">
                                         0
                                     </div>
@@ -138,7 +149,7 @@
                                     📈
                                 </div>
                                 <div class="stat-content">
-                                    <div class="stat-label">Average Score</div>
+                                    <div class="stat-label">Skor Rata-Rata</div>
                                     <div class="stat-value" id="averageScore">
                                         0.00
                                     </div>

@@ -46,10 +46,16 @@ async function apiCall(endpoint, options = {}) {
             headers,
         });
 
+        // PERBAIKAN DI SINI:
         if (response.status === 401) {
             removeToken();
             removeUser();
-            window.location.href = "/";
+
+            // Hanya alihkan halaman jika error 401 BUKAN berasal dari endpoint login
+            if (!endpoint.includes("login") && !endpoint.includes("auth")) {
+                window.location.href = "/";
+                return;
+            }
         }
 
         const data = await response.json();
@@ -159,3 +165,25 @@ function copyToClipboard(text) {
         showNotification("Copied to clipboard", "success");
     });
 }
+
+function handleLogout(e) {
+    if (e) e.preventDefault(); // Mencegah reload halaman bawaan tag <a> atau <form>
+
+    // 1. Hapus kredensial dari LocalStorage
+    removeToken();
+    removeUser();
+
+    // 2. Redirect (Arahkan) kembali ke halaman Login
+    // Ubah '/' menjadi 'index.html' jika saat dijalankan manual halamannya bernama index.html
+    window.location.href = "index.html";
+}
+
+// Pasangkan fungsi ke tombol saat halaman selesai dimuat
+document.addEventListener("DOMContentLoaded", () => {
+    // Cari tombol dengan ID btnLogout
+    const logoutBtn = document.getElementById("btnLogout");
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", handleLogout);
+    }
+});

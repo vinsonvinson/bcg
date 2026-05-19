@@ -102,7 +102,7 @@ function updateRecentAssessments(recentAssessments) {
         </div>
         <div style="display: flex; gap: 10px; align-items: center;">
           <span class="zone-badge zone-${getZoneClass(assessment.risk_zone)}">
-            ${assessment.risk_zone || "N/A"}
+            ${assessment.status.replace(/_/g, " ") || "N/A"}
           </span>
           <span class="recent-item-score">${Number(assessment.total_score).toFixed(2) || "N/A"}</span>
         </div>
@@ -152,10 +152,10 @@ async function loadAllAssessments() {
         }
 
         let html =
-            '<div class="table-header"><div>Business Name</div><div>Product</div><div>Status</div><div>Risk Zone</div><div>Score</div><div>Actions</div></div>';
+            '<div class="table-header"><div>Business Name</div><div>Product</div><div>Status</div><div>Score</div><div>Actions</div></div>';
 
         response.assessments.forEach((assessment) => {
-            const statusBadge = `<span class="status-badge status-${assessment.status}">${assessment.status}</span>`;
+            const statusBadge = `<span class="status-badge status-${assessment.status}">${assessment.status.replace(/_/g, " ")}</span>`;
             const zoneBadge = `<span class="zone-badge zone-${getZoneClass(assessment.risk_zone)}">${assessment.risk_zone || "N/A"}</span>`;
 
             html += `
@@ -163,7 +163,6 @@ async function loadAllAssessments() {
                     <div>${assessment.business_name}</div>
                     <div>${assessment.product_name || "N/A"}</div>
                     <div>${statusBadge}</div>
-                    <div>${zoneBadge}</div>
                     <div>${Number(assessment.total_score).toFixed(2) || "N/A"}</div>
                     <div><button class="btn-download" onclick="downloadExcel(${assessment.id})">Download</button></div>
                 </div>

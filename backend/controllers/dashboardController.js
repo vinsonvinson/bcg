@@ -37,7 +37,7 @@ const DashboardController = {
             res.json({
                 summary: {
                     total: statusCounts[0].total,
-                    approved: statusCounts[0].Risiko_Diterima || 0,
+                    Risiko_Diterima: statusCounts[0].Risiko_Diterima || 0,
                     Risiko_Dimitigasi: statusCounts[0].Risiko_Dimitigasi || 0,
                     Risiko_Dipindahkan: statusCounts[0].Risiko_Dipindahkan || 0,
                     Risiko_Dihindari: statusCounts[0].Risiko_Dihindari || 0,

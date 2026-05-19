@@ -94,4 +94,4 @@ CREATE TABLE condition_scores (
 );
 
 INSERT INTO users (username, password, email, full_name, role)
-VALUES ('admin', '$2a$10$YIjlrPnoJ8tsQNYrUx5h.OD6X9WqfPy1kQCq5h5nWqRO7L0bM9fLe', 'admin@bcg.com', 'Administrator', 'admin');
+VALUES ('admin', '$2a$10$maMKpQrc6Od5mXXdpk5XC.XYFATFYJQJ9X4z0Nxox4TN/N0t9CHTK', 'admin@bcg.com', 'Administrator', 'admin');

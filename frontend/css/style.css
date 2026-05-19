@@ -88,7 +88,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f0f0f0;
+    background: var(--bg-color);
 }
 
 .login-wrapper {
@@ -121,7 +121,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: #f7f7f7;
+    background: var(--card-bg);
     color: var(--text-color);
 }
 
@@ -282,7 +282,6 @@ body {
     border-radius: var(--radius-md);
     font-size: 14px;
     cursor: pointer;
-    box-shadow: var(--shadow-lg);
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease;
@@ -651,8 +650,8 @@ body {
 .summary-item {
     display: flex;
     justify-content: space-between;
-    padding: var(--spacing-md) 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color, #eee);
 }
 
 .summary-item:last-child {
@@ -660,12 +659,15 @@ body {
 }
 
 .summary-label {
+    flex: 1;
+    padding-right: 15px;
     font-weight: 500;
 }
 
 .summary-value {
     font-weight: 600;
-    color: var(--primary-color);
+    text-align: right;
+    color: var(--primary-color, #1976d2);
 }
 
 .loading-spinner {
@@ -926,7 +928,7 @@ body {
 
 .table-header {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
     padding: var(--spacing-md);
     background: rgba(25, 118, 210, 0.05);
     border-bottom: 2px solid var(--border-color);
@@ -936,7 +938,7 @@ body {
 
 .table-row {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
     padding: var(--spacing-md);
     border-bottom: 1px solid var(--border-color);
     align-items: center;
@@ -1146,6 +1148,73 @@ body {
     width: 100%;
 }
 
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.filter-container,
+div:has(> #searchInput) {
+    /* Menargetkan div pembungkus input search otomatis */
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+#searchInput,
+#statusFilter {
+    padding: 10px 14px;
+    border: 1px solid var(--border-color, #ccc);
+    border-radius: 8px;
+    background-color: var(--card-bg, #fff);
+    color: var(--text-color, #333);
+    font-size: 16px; /* Wajib 16px agar tidak auto-zoom di iOS */
+    min-height: 48px; /* UX Mobile: Area klik standar minimum */
+    outline: none;
+}
+
+/* Biarkan Search bar memanjang di desktop, filter status menyesuaikan isinya */
+#searchInput {
+    flex: 1;
+}
+#statusFilter {
+    min-width: 200px;
+    cursor: pointer;
+}
+
+#searchInput:focus,
+#statusFilter:focus {
+    border-color: var(--primary-color, #1976d2);
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+.nav-logo {
+    height: 32px; /* Sesuaikan tinggi logo jika kurang besar/kecil */
+    width: auto;
+    object-fit: contain; /* Mencegah gambar menjadi gepeng */
+}
+
+/* Memastikan logo dan teks "BCG Skoring" sejajar secara horizontal */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Memberi jarak antara logo dan teks */
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Mengatur ukuran logo di Halaman Login */
+.login-logo {
+    height: 80px; /* Sesuaikan tinggi logo untuk halaman login */
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px; /* Memberi jarak antara logo dan judul "Log In - BCG" */
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .dashboard-container {
@@ -1191,5 +1260,110 @@ body {
     .progress-step {
         margin-left: 40px;
         margin-bottom: var(--spacing-md);
+    }
+
+    .filter-container,
+    div:has(> #searchInput) {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px;
+    }
+
+    /* Pastikan keduanya melebar penuh 100% dari kiri ke kanan */
+    #searchInput,
+    #statusFilter {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* 1. Ruang (Spacing) yang Lebih Lega */
+    .form-container,
+    .card,
+    .modal-content {
+        padding: 15px !important;
+        margin: 10px !important;
+        border-radius: 12px;
+    }
+
+    /* 2. Layout Form: 2 Kolom -> 1 Kolom (Stacking) */
+    .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    /* 3. Optimalisasi Area Sentuh & Mencegah Auto-Zoom di iOS */
+    input[type="text"],
+    input[type="number"],
+    select,
+    .btn,
+    button {
+        min-height: 48px !important; /* Area klik standar UX mobile */
+        font-size: 16px !important; /* Wajib 16px agar Safari iPhone tidak zoom otomatis saat diketik */
+        padding: 10px 14px;
+        width: 100% !important; /* Pastikan penuh selebar layar */
+    }
+
+    /* 4. Perbaikan UX Stepper / Progress Bar */
+    .progress-bar {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto; /* Bisa digeser horizontal jika terlalu panjang */
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
+        padding-bottom: 10px;
+        justify-content: flex-start;
+    }
+
+    .progress-step {
+        font-size: 13px;
+        white-space: nowrap; /* Teks step tidak turun ke bawah */
+        flex: 0 0 auto;
+    }
+
+    /* 5. Summary & Detail Skor menjadi Vertikal */
+    .summary-item,
+    .score-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 0;
+    }
+
+    .summary-value,
+    .score-item .score-value {
+        text-align: left;
+        margin-top: 6px;
+        font-size: 15px;
+    }
+
+    /* 6. Tombol Form & Modal Berjejer Ke Bawah (Lebih mudah dijangkau jempol) */
+    .button-group,
+    .modal-actions,
+    div[style*="display: flex; gap: 10px;"] {
+        display: flex;
+        flex-direction: column-reverse; /* Tombol Submit/Next di atas, Cancel/Prev di bawah */
+        gap: 12px !important;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .button-group button,
+    .modal-actions button,
+    div[style*="display: flex"] button {
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    /* 7. Perbaikan Tampilan Modal (Total Skor) */
+    .total-score {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .score-value-large {
+        font-size: 32px !important; /* Ukuran besar tapi tetap proporsional */
     }
 }
