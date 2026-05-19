@@ -127,12 +127,61 @@ const Score = {
                 [assessmentId],
             );
 
+            // MAPPING: Menyesuaikan raw data (snake_case) dari MySQL menjadi camelCase untuk sisa aplikasi
             return {
-                character: character[0] || null,
-                capacity: capacity[0] || null,
-                capital: capital[0] || null,
-                collateral: collateral[0] || null,
-                condition: condition[0] || null,
+                character: character[0]
+                    ? {
+                          willingness: character[0].willingness_score,
+                          integrity: character[0].integrity_score,
+                          personalRisk: character[0].personal_risk_score,
+                          socialRelation: character[0].social_relation_score,
+                          average_score: character[0].average_score,
+                      }
+                    : null,
+
+                capacity: capacity[0]
+                    ? {
+                          management: capacity[0].management_skill_score,
+                          experience: capacity[0].business_experience_score,
+                          production: capacity[0].production_capacity_score,
+                          costProductivity: capacity[0].cost_productivity_score,
+                          equipment: capacity[0].equipment_support_score,
+                          sales: capacity[0].sales_profit_score,
+                          average_score: capacity[0].average_score,
+                      }
+                    : null,
+
+                capital: capital[0]
+                    ? {
+                          capitalPosition: capital[0].capital_position_score,
+                          debtPosition: capital[0].debt_position_score,
+                          personalContribution:
+                              capital[0].personal_contribution_score,
+                          receivableStock: capital[0].receivable_stock_score,
+                          average_score: capital[0].average_score,
+                      }
+                    : null,
+
+                collateral: collateral[0]
+                    ? {
+                          type: collateral[0].collateral_type_score,
+                          marketability:
+                              collateral[0].collateral_marketability_score,
+                          binding: collateral[0].collateral_binding_score,
+                          ltv: collateral[0].ltv_ratio_score,
+                          average_score: collateral[0].average_score,
+                      }
+                    : null,
+
+                condition: condition[0]
+                    ? {
+                          market: condition[0].market_condition_score,
+                          material: condition[0].material_availability_score,
+                          distribution: condition[0].distribution_support_score,
+                          regulation: condition[0].regulation_legality_score,
+                          average_score: condition[0].average_score,
+                      }
+                    : null,
             };
         } finally {
             connection.release();

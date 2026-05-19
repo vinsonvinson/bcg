@@ -160,12 +160,12 @@ const AssessmentController = {
             // Update assessment with scores and decision
             const status =
                 riskZone.zone === "MERAH"
-                    ? "rejected"
+                    ? "Risiko_Dihindari"
                     : riskZone.zone === "KUNING"
-                      ? "pending_collateral"
+                      ? "Risiko_Dipindahkan"
                       : riskZone.zone === "HIJAU MUDA"
-                        ? "mitigated"
-                        : "approved";
+                        ? "Risiko_Dimitigasi"
+                        : "Risiko_Diterima";
 
             await Assessment.update(id, {
                 total_score: totalScore,
@@ -200,6 +200,8 @@ const AssessmentController = {
                 return res.status(404).json({ error: "Assessment not found" });
             }
 
+            const { mapToRiskZone } = require("../utils/scoring");
+
             const scores = await Score.getScoresByAssessmentId(id);
 
             const scores_obj = {
@@ -208,11 +210,17 @@ const AssessmentController = {
                 capitalScore: scores.capital?.average_score || 0,
                 collateralScore: scores.collateral?.average_score || 0,
                 conditionScore: scores.condition?.average_score || 0,
+
+                // Tambahkan detail indikator (Raw data dari database)
+                characterDetail: scores.character || {},
+                capacityDetail: scores.capacity || {},
+                capitalDetail: scores.capital || {},
+                collateralDetail: scores.collateral || {},
+                conditionDetail: scores.condition || {},
+
                 totalScore: assessment.total_score,
                 riskZone: mapToRiskZone(assessment.total_score),
             };
-
-            const { mapToRiskZone } = require("../utils/scoring");
 
             const workbook = await generateExcelReport(assessment, scores_obj);
 
@@ -226,6 +234,8 @@ const AssessmentController = {
             );
 
             await workbook.xlsx.write(res);
+
+            res.end();
         } catch (error) {
             console.error("Export error:", error);
             res.status(500).json({ error: "Failed to export assessment" });

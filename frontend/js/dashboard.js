@@ -1,7 +1,5 @@
 // Dashboard Module
 let dashboardData = null;
-let riskZoneChart = null;
-let statusChart = null;
 
 document.addEventListener("DOMContentLoaded", function () {
     checkAuth();
@@ -43,17 +41,8 @@ function showSection(sectionId) {
     }
 
     // Reinitialize charts if needed
-    if (sectionId === "overview" && dashboardData) {
-        setTimeout(() => {
-            if (riskZoneChart) {
-                riskZoneChart.resize();
-                riskZoneChart.update();
-            }
-            if (statusChart) {
-                statusChart.resize();
-                statusChart.update();
-            }
-        }, 100);
+    if (sectionId === "assessments") {
+        loadAllAssessments();
     }
 }
 
@@ -70,9 +59,6 @@ async function loadDashboardData() {
 
         // Update risk zones
         updateRiskZones(response.riskZones);
-
-        // Initialize charts
-        initCharts(response.summary, response.riskZones);
     } catch (error) {
         console.error("Error loading dashboard:", error);
     }
@@ -80,11 +66,14 @@ async function loadDashboardData() {
 
 function updateStats(summary) {
     document.getElementById("totalAssessments").textContent = summary.total;
-    document.getElementById("approvedCount").textContent = summary.approved;
-    document.getElementById("mitigatedCount").textContent = summary.mitigated;
+    document.getElementById("approvedCount").textContent =
+        summary.Risiko_Diterima;
+    document.getElementById("mitigatedCount").textContent =
+        summary.Risiko_Dimitigasi;
     document.getElementById("pendingCount").textContent =
-        summary.pending_collateral;
-    document.getElementById("rejectedCount").textContent = summary.rejected;
+        summary.Risiko_Dipindahkan;
+    document.getElementById("rejectedCount").textContent =
+        summary.Risiko_Dihindari;
     document.getElementById("averageScore").textContent = summary.average_score;
 }
 
@@ -115,7 +104,7 @@ function updateRecentAssessments(recentAssessments) {
           <span class="zone-badge zone-${getZoneClass(assessment.risk_zone)}">
             ${assessment.risk_zone || "N/A"}
           </span>
-          <span class="recent-item-score">${assessment.total_score?.toFixed(2) || "N/A"}</span>
+          <span class="recent-item-score">${Number(assessment.total_score).toFixed(2) || "N/A"}</span>
         </div>
       </div>
     `;
@@ -148,116 +137,6 @@ function getZoneClass(zone) {
     return "default";
 }
 
-function initCharts(summary, riskZones) {
-    const riskZoneCtx = document.getElementById("riskZoneChart");
-    const statusCtx = document.getElementById("statusChart");
-
-    if (!riskZoneCtx || !statusCtx) return;
-
-    // Risk Zone Chart
-    if (riskZoneChart) {
-        riskZoneChart.destroy();
-    }
-
-    riskZoneChart = new Chart(riskZoneCtx, {
-        type: "doughnut",
-        data: {
-            labels: ["Hijau Tua", "Hijau Muda", "Kuning", "Merah"],
-            datasets: [
-                {
-                    data: [
-                        riskZones["HIJAU TUA"] || 0,
-                        riskZones["HIJAU MUDA"] || 0,
-                        riskZones["KUNING"] || 0,
-                        riskZones["MERAH"] || 0,
-                    ],
-                    backgroundColor: [
-                        "#4CAF50",
-                        "#8BC34A",
-                        "#FFC107",
-                        "#F44336",
-                    ],
-                    borderColor: "var(--card-bg)",
-                    borderWidth: 2,
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    position: "bottom",
-                    labels: {
-                        color: "var(--text-color)",
-                        font: { size: 12 },
-                    },
-                },
-            },
-        },
-    });
-
-    // Status Chart
-    if (statusChart) {
-        statusChart.destroy();
-    }
-
-    statusChart = new Chart(statusCtx, {
-        type: "bar",
-        data: {
-            labels: ["Approved", "Mitigated", "Pending", "Rejected"],
-            datasets: [
-                {
-                    label: "Count",
-                    data: [
-                        summary.approved,
-                        summary.mitigated,
-                        summary.pending_collateral,
-                        summary.rejected,
-                    ],
-                    backgroundColor: [
-                        "rgba(76, 175, 80, 0.7)",
-                        "rgba(139, 195, 74, 0.7)",
-                        "rgba(255, 193, 7, 0.7)",
-                        "rgba(244, 67, 54, 0.7)",
-                    ],
-                    borderColor: ["#4CAF50", "#8BC34A", "#FFC107", "#F44336"],
-                    borderWidth: 2,
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            indexAxis: "y",
-            plugins: {
-                legend: {
-                    display: false,
-                },
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: "var(--text-color)",
-                    },
-                    grid: {
-                        color: "var(--border-color)",
-                    },
-                },
-                y: {
-                    ticks: {
-                        color: "var(--text-color)",
-                    },
-                    grid: {
-                        color: "var(--border-color)",
-                    },
-                },
-            },
-        },
-    });
-}
-
 // Load and display all assessments
 async function loadAllAssessments() {
     const container = document.getElementById("assessmentsList");
@@ -285,7 +164,7 @@ async function loadAllAssessments() {
                     <div>${assessment.product_name || "N/A"}</div>
                     <div>${statusBadge}</div>
                     <div>${zoneBadge}</div>
-                    <div>${assessment.total_score?.toFixed(2) || "N/A"}</div>
+                    <div>${Number(assessment.total_score).toFixed(2) || "N/A"}</div>
                     <div><button class="btn-download" onclick="downloadExcel(${assessment.id})">Download</button></div>
                 </div>
             `;

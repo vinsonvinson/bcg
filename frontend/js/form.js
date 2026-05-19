@@ -27,6 +27,8 @@ function previousStep() {
     if (currentStep > 1) {
         currentStep--;
         updateSteps();
+    } else {
+        window.location.href = "/dashboard";
     }
 }
 
@@ -273,16 +275,19 @@ async function handleSubmitAssessment(e) {
 
         // Show result
         const result = scoresResponse.scores;
-        showResultModal(result, assessmentResponse.assessmentCode, assessmentId);
+        showResultModal(
+            result,
+            assessmentResponse.assessmentCode,
+            assessmentId,
+        );
     } catch (error) {
         hideLoading();
         alert("Error: " + error.message);
     }
 }
 
-function showResultModal(result, assessmentCode) {
 function showResultModal(result, assessmentCode, assessmentId) {
-        const html = `
+    const html = `
     <div class="result-modal">
       <h3>Assessment Result</h3>
       <p><strong>Assessment Code:</strong> ${assessmentCode}</p>
@@ -360,15 +365,14 @@ function closeModal() {
     }
 }
 
-function downloadExcel(assessmentCode) {
 async function downloadExcel(assessmentId) {
     try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem("token");
         const url = `${API_BASE_URL}/assessments/${assessmentId}/export`;
 
         const res = await fetch(url, {
-            method: 'GET',
-            headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+            method: "GET",
+            headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
 
         if (!res.ok) {
@@ -378,14 +382,14 @@ async function downloadExcel(assessmentId) {
 
         const blob = await res.blob();
         let filename = `Assessment-${assessmentId}.xlsx`;
-        const cd = res.headers.get('Content-Disposition');
+        const cd = res.headers.get("Content-Disposition");
         if (cd) {
             const match = /filename="?([^";]+)"?/.exec(cd);
             if (match && match[1]) filename = match[1];
         }
 
         const objectUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = objectUrl;
         a.download = filename;
         document.body.appendChild(a);
@@ -393,8 +397,8 @@ async function downloadExcel(assessmentId) {
         a.remove();
         URL.revokeObjectURL(objectUrl);
     } catch (err) {
-        console.error('Download error:', err);
-        alert('Gagal mengunduh file. Periksa koneksi atau hak akses.');
+        console.error("Download error:", err);
+        alert("Gagal mengunduh file. Periksa koneksi atau hak akses.");
     }
 }
 

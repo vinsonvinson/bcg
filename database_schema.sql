@@ -27,7 +27,7 @@ CREATE TABLE assessments (
   analyst_id INT NOT NULL,
   total_score DECIMAL(5,2),
   risk_zone VARCHAR(50),
-  status ENUM('draft', 'approved', 'rejected', 'mitigated', 'pending_collateral') DEFAULT 'draft',
+  status ENUM('draft', 'Risiko_Diterima', 'Risiko_Dihindari', 'Risiko_Dimitigasi', 'Risiko_Dipindahkan') DEFAULT 'draft',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (analyst_id) REFERENCES users(id) ON DELETE RESTRICT,

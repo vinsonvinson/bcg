@@ -15,7 +15,7 @@
                     <span class="nav-title">Assessment Dashboard</span>
                 </div>
                 <div class="navbar-right">
-                    <button id="themeToggle" class="theme-btn">🌙</button>
+                    <button id="themeToggle" class="theme-btn"></button>
                     <button id="logoutBtn" class="logout-btn">Logout</button>
                 </div>
             </nav>
@@ -146,18 +146,6 @@
                             </div>
                         </div>
 
-                        <div class="charts-grid">
-                            <div class="chart-container">
-                                <h3>Risk Zone Distribution</h3>
-                                <canvas id="riskZoneChart"></canvas>
-                            </div>
-
-                            <div class="chart-container">
-                                <h3>Assessment Status</h3>
-                                <canvas id="statusChart"></canvas>
-                            </div>
-                        </div>
-
                         <div class="recent-section">
                             <h3>Recent Assessments</h3>
                             <div id="recentAssessments" class="recent-list">
@@ -181,12 +169,18 @@
                                 <option value="">All Status</option>
                                 <option value="draft">Draft</option>
                                 <option value="submitted">Submitted</option>
-                                <option value="approved">Approved</option>
-                                <option value="mitigated">Mitigated</option>
-                                <option value="pending_collateral">
+                                <option value="Risiko_Diterima">
+                                    Approved
+                                </option>
+                                <option value="Risiko_Dimitigasi">
+                                    Mitigated
+                                </option>
+                                <option value="Risiko_Dipindahkan">
                                     Pending Collateral
                                 </option>
-                                <option value="rejected">Rejected</option>
+                                <option value="Risiko_Dihindari">
+                                    Rejected
+                                </option>
                             </select>
                         </div>
 

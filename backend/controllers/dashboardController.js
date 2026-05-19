@@ -9,10 +9,10 @@ const DashboardController = {
             const [statusCounts] = await connection.execute(
                 `SELECT 
           COUNT(*) as total,
-          SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved,
-          SUM(CASE WHEN status = 'mitigated' THEN 1 ELSE 0 END) as mitigated,
-          SUM(CASE WHEN status = 'pending_collateral' THEN 1 ELSE 0 END) as pending_collateral,
-          SUM(CASE WHEN status = 'rejected' THEN 1 ELSE 0 END) as rejected
+          SUM(CASE WHEN status = 'Risiko_Diterima' THEN 1 ELSE 0 END) as Risiko_Diterima,
+          SUM(CASE WHEN status = 'Risiko_Dimitigasi' THEN 1 ELSE 0 END) as Risiko_Dimitigasi,
+          SUM(CASE WHEN status = 'Risiko_Dipindahkan' THEN 1 ELSE 0 END) as Risiko_Dipindahkan,
+          SUM(CASE WHEN status = 'Risiko_Dihindari' THEN 1 ELSE 0 END) as Risiko_Dihindari
          FROM assessments`,
             );
 
@@ -37,11 +37,13 @@ const DashboardController = {
             res.json({
                 summary: {
                     total: statusCounts[0].total,
-                    approved: statusCounts[0].approved || 0,
-                    mitigated: statusCounts[0].mitigated || 0,
-                    pending_collateral: statusCounts[0].pending_collateral || 0,
-                    rejected: statusCounts[0].rejected || 0,
-                    average_score: avgScores[0].average_score?.toFixed(2) || 0,
+                    approved: statusCounts[0].Risiko_Diterima || 0,
+                    Risiko_Dimitigasi: statusCounts[0].Risiko_Dimitigasi || 0,
+                    Risiko_Dipindahkan: statusCounts[0].Risiko_Dipindahkan || 0,
+                    Risiko_Dihindari: statusCounts[0].Risiko_Dihindari || 0,
+                    average_score: Number(
+                        avgScores[0].average_score || 0,
+                    ).toFixed(2),
                 },
                 riskZones: riskZones.reduce((acc, zone) => {
                     acc[zone.risk_zone] = zone.count;

@@ -278,10 +278,9 @@ body {
     background: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
     cursor: pointer;
     box-shadow: var(--shadow-lg);
     transition:
@@ -293,10 +292,7 @@ body {
 }
 
 .theme-btn:hover {
-    transform: scale(1.1);
-    box-shadow:
-        var(--shadow-lg),
-        0 0 20px rgba(25, 118, 210, 0.4);
+    background: rgb(20, 95, 171);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -930,7 +926,7 @@ body {
 
 .table-header {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
     padding: var(--spacing-md);
     background: rgba(25, 118, 210, 0.05);
     border-bottom: 2px solid var(--border-color);
@@ -940,7 +936,7 @@ body {
 
 .table-row {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
     padding: var(--spacing-md);
     border-bottom: 1px solid var(--border-color);
     align-items: center;
@@ -959,22 +955,22 @@ body {
     font-weight: 600;
 }
 
-.status-approved {
+.status-Risiko_Diterima {
     background: rgba(76, 175, 80, 0.2);
     color: var(--success-color);
 }
 
-.status-mitigated {
+.status-Risiko_Dimitigasi {
     background: rgba(139, 195, 74, 0.2);
     color: #8bc34a;
 }
 
-.status-pending {
+.status-Risiko_Dipindahkan {
     background: rgba(255, 193, 7, 0.2);
     color: var(--warning-color);
 }
 
-.status-rejected {
+.status-Risiko_Dihindari {
     background: rgba(244, 67, 54, 0.2);
     color: var(--danger-color);
 }
@@ -1135,6 +1131,21 @@ body {
     color: var(--text-color);
 }
 
+/* Membuat pembungkus tabel bisa di-scroll horizontal */
+#assessmentsList {
+    width: 100%;
+    overflow-x: auto; /* Memunculkan scrollbar jika konten melebihi layar */
+    -webkit-overflow-scrolling: touch; /* Untuk scroll yang halus di smartphone */
+    padding-bottom: 10px; /* Memberi ruang untuk scrollbar */
+}
+
+/* Memaksa baris tabel memiliki lebar minimum agar tidak menyusut/terlipat */
+.table-header,
+.table-row {
+    min-width: 900px !important; /* Sesuaikan angka ini jika kolom masih terasa sempit */
+    width: 100%;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .dashboard-container {
@@ -1157,20 +1168,6 @@ body {
 
 @media (max-width: 768px) {
     .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .table-header,
-    .table-row {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-
-    .charts-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .risk-zones-container {
         grid-template-columns: 1fr;
     }
 
