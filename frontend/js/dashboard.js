@@ -194,7 +194,8 @@ function filterAssessments() {
         const text = row.textContent.toLowerCase();
         const showBySearch = text.includes(searchValue);
         const showByStatus =
-            !statusValue || row.textContent.includes(statusValue);
+            !statusValue ||
+            row.textContent.includes(statusValue.replace(/_/g, " "));
 
         row.style.display = showBySearch && showByStatus ? "grid" : "none";
     });

@@ -231,7 +231,6 @@ const generateExcelReport = async (assessmentData, scores) => {
     };
 
     addSummaryRow("TOTAL SKOR AKHIR", Number(scores.totalScore).toFixed(2));
-    addSummaryRow("ZONA RISIKO", scores.riskZone.zone);
     addSummaryRow("TINGKAT RISIKO", scores.riskZone.riskLevel);
     addSummaryRow("KEPUTUSAN", scores.riskZone.decision);
 

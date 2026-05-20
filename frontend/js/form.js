@@ -311,7 +311,6 @@ function showResultModal(result, assessmentCode, assessmentId) {
       </div>
 
       <div class="risk-zone-result" style="background: rgba(25, 118, 210, 0.1); padding: 16px; border-radius: 8px; margin-top: 16px;">
-        <h4 style="color: ${result.riskZone.color}; margin-bottom: 8px;">Risk Zone: ${result.riskZone.zone}</h4>
         <p style="margin: 8px 0;"><strong>Level:</strong> ${result.riskZone.riskLevel}</p>
         <p style="margin: 8px 0; font-size: 13px; line-height: 1.6;">${result.riskZone.decision}</p>
       </div>

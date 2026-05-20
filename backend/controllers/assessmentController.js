@@ -99,7 +99,6 @@ const AssessmentController = {
                 return res.status(404).json({ error: "Assessment not found" });
             }
 
-
             await Score.createCharacterScore(id, {
                 willingness: characterScores.willingness,
                 integrity: characterScores.integrity,
@@ -209,7 +208,7 @@ const AssessmentController = {
                 collateralScore: scores.collateral?.average_score || 0,
                 conditionScore: scores.condition?.average_score || 0,
 
-                characterDetail: scores.character || {},,
+                characterDetail: scores.character || {},
                 capacityDetail: scores.capacity || {},
                 capitalDetail: scores.capital || {},
                 collateralDetail: scores.collateral || {},
